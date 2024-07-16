@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ejericio_tecnico.ForoHub.Dto.CrearUsuario;
 import com.ejericio_tecnico.ForoHub.Entity.Usuario;
 import com.ejericio_tecnico.ForoHub.Services.IUsuarioServices;
 
 import jakarta.validation.Valid;
-
 
 @RestController
 @RequestMapping("/usuarios")
@@ -32,7 +32,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario crearUsuario(@Valid @RequestBody Usuario newUsuario) {
+    public Usuario crearUsuario(@Valid @RequestBody CrearUsuario newUsuario) {
         return usuarioService.createUsuario(newUsuario);
     }
 

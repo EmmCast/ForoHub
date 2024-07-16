@@ -60,8 +60,4 @@ public class Topico  implements Serializable{
     @JoinColumn(name = "curso_id",referencedColumnName = "id_curso")
     private Curso cursoId;
 
-    /*
-    @OneToMany(mappedBy = "topico",cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Respuesta> respuestas;
-*/
 }

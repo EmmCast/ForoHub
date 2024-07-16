@@ -4,22 +4,33 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.ejericio_tecnico.ForoHub.Dto.CrearUsuario;
 import com.ejericio_tecnico.ForoHub.Entity.Usuario;
 import com.ejericio_tecnico.ForoHub.Repository.IUsuarioRepository;
+import com.ejericio_tecnico.ForoHub.Services.IPerfilServices;
 import com.ejericio_tecnico.ForoHub.Services.IUsuarioServices;
 
 @Service
 public class UsuarioServicesImpl implements IUsuarioServices{
 
 	private IUsuarioRepository usuarioRepository;
+	private IPerfilServices perfilServices;
 	
 	public UsuarioServicesImpl(IUsuarioRepository usuarioRepository) {
 		this.usuarioRepository = usuarioRepository;
 	}
 
 	@Override
-	public Usuario createUsuario(Usuario newUsuario) {
-		 return usuarioRepository.save(newUsuario);
+	public Usuario createUsuario(CrearUsuario newUsuario) {
+		Usuario usuario = new Usuario();
+		usuario.getIdUsuario();
+		usuario.setNombre(newUsuario.getNombre());
+		usuario.setEmail(newUsuario.getEmail());
+		usuario.setPassword(newUsuario.getPassword());
+		usuario.setPerfilId(perfilServices.findByIdPerfil(newUsuario.getPerfilId()));
+		
+		
+		 return usuarioRepository.save(usuario);
 	}
 
 	@Override
@@ -39,7 +50,7 @@ public class UsuarioServicesImpl implements IUsuarioServices{
 	            usuario.setNombre(updateUsuario.getNombre());
 	            usuario.setEmail(updateUsuario.getEmail());
 	            usuario.setPassword(updateUsuario.getPassword());
-	            usuario.setPerfilId(updateUsuario.getPerfilId());
+	            usuario.setPerfilId(perfilServices.findByIdPerfil(updateUsuario.getPerfilId().getIdPerfil()));
 	            return usuarioRepository.save(usuario);
 	        }).orElse(null);
 	}

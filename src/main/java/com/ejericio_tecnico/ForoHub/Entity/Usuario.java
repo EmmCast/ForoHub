@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+
 @Entity
 @Table(name = "usuarios")
 @Setter
@@ -34,7 +35,6 @@ public class Usuario implements Serializable, UserDetails{
 	private Long idUsuario;
 
 	@NotBlank(message = "el nombre de usuario no puede estar en blanco")
-	@UniqueElements(message = "este usuario ya existe")
 	@Column(name ="nombre")
 	private String nombre;
 	
@@ -52,18 +52,6 @@ public class Usuario implements Serializable, UserDetails{
 	@JoinColumn(name = "perfil_id",referencedColumnName = "id_perfil")
 	private Perfil perfilId;
 
-	/*
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
-	}
-
-	@Override
-	public String getUsername() {
-		return email;
-	}
-
-	*/
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
@@ -98,6 +86,5 @@ public class Usuario implements Serializable, UserDetails{
     public boolean isEnabled() {
         return true;
     }
-	
-	
+
 }

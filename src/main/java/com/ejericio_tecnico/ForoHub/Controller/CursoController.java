@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ejericio_tecnico.ForoHub.Entity.Curso;
 import com.ejericio_tecnico.ForoHub.Services.ICursoServuces;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
-
 
 @RestController
 @RequestMapping("/cursos")
+@Api(value = "UsuarioController", tags = { "Gestión de Usuarios" })
 public class CursoController {
 
     @Autowired
@@ -32,6 +34,7 @@ public class CursoController {
     }
 
     @PostMapping
+    @ApiOperation(value = "Crear un nuevo usuario", notes = "Crea un nuevo usuario en el sistema")
     public Curso crearCurso(@Valid @RequestBody Curso newCurso) {
         return cursoService.createCurso(newCurso);
     }

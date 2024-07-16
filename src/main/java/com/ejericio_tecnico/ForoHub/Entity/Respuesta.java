@@ -46,11 +46,4 @@ public class Respuesta {
     @JoinColumn(name = "usuario_id",referencedColumnName = "id_usuario")
     private Usuario usuarioId;
 
- /*   
-    @ManyToOne
-    @JoinColumn(name = "topico_id")
-    private Topico topico;
-*/
-    
-    
 }

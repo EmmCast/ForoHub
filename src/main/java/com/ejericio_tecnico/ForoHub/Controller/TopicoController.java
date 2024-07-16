@@ -18,7 +18,6 @@ import com.ejericio_tecnico.ForoHub.Services.ITopicoServieces;
 
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/topicos")
 public class TopicoController {
