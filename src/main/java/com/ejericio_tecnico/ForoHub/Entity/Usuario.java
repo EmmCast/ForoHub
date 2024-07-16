@@ -1,32 +1,30 @@
 package com.ejericio_tecnico.ForoHub.Entity;
 
-import java.io.Serializable;
-
-import org.hibernate.validator.constraints.UniqueElements;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 @Entity
 @Table(name = "usuarios")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario implements Serializable{
+public class Usuario implements Serializable, UserDetails{
 
 	private static final long serialVersionUID = 1L;
 
@@ -42,17 +40,64 @@ public class Usuario implements Serializable{
 	
 
 	@Email()
-	@Column(name ="correoelectronico")
-	private String correoelectronico;
+	@Column(name ="email")
+	private String email;
 	
-	@Email()
 	@NotBlank(message = "la contraseña no puede ser nula")
-	@Size(min = 6,max = 50, message = "la contraseña no cumple los criterios")
+	@Size(min = 6, message = "la contraseña no cumple los criterios")
 	@Column(name ="contrasena")
-	private String contrasena;
+	private String password;
 	
 	@ManyToOne
 	@JoinColumn(name = "perfil_id",referencedColumnName = "id_perfil")
 	private Perfil perfilId;
 
+	/*
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
+
+	@Override
+	public String getUsername() {
+		return email;
+	}
+
+	*/
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+	
+	
 }

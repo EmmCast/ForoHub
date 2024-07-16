@@ -32,8 +32,8 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario crearUsuario(@Valid @RequestBody Usuario usuario) {
-        return usuarioService.createUsuario(usuario);
+    public Usuario crearUsuario(@Valid @RequestBody Usuario newUsuario) {
+        return usuarioService.createUsuario(newUsuario);
     }
 
     @GetMapping("/{idUsuario}")
@@ -46,8 +46,8 @@ public class UsuarioController {
     }
 
     @PutMapping("/{idUsuario}")
-    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Long idUsuario, @Valid @RequestBody Usuario detallesUsuario) {
-        Usuario usuario = usuarioService.updatefindByIdUsuario(idUsuario, detallesUsuario);
+    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Long idUsuario, @Valid @RequestBody Usuario updateUsuario) {
+        Usuario usuario = usuarioService.updatefindByIdUsuario(idUsuario, updateUsuario);
         if (usuario == null) {
             return ResponseEntity.notFound().build();
         }

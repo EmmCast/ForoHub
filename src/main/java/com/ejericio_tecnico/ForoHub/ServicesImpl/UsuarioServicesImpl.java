@@ -37,8 +37,8 @@ public class UsuarioServicesImpl implements IUsuarioServices{
 	public Usuario updatefindByIdUsuario(Long idUsuario, Usuario updateUsuario) {
 		 return usuarioRepository.findById(idUsuario).map(usuario -> {
 	            usuario.setNombre(updateUsuario.getNombre());
-	            usuario.setCorreoelectronico(updateUsuario.getCorreoelectronico());
-	            usuario.setContrasena(updateUsuario.getContrasena());
+	            usuario.setEmail(updateUsuario.getEmail());
+	            usuario.setPassword(updateUsuario.getPassword());
 	            usuario.setPerfilId(updateUsuario.getPerfilId());
 	            return usuarioRepository.save(usuario);
 	        }).orElse(null);

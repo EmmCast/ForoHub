@@ -32,8 +32,8 @@ public class CursoController {
     }
 
     @PostMapping
-    public Curso crearCurso(@Valid @RequestBody Curso curso) {
-        return cursoService.createCurso(curso);
+    public Curso crearCurso(@Valid @RequestBody Curso newCurso) {
+        return cursoService.createCurso(newCurso);
     }
 
     @GetMapping("/{idCurso}")
@@ -46,8 +46,8 @@ public class CursoController {
     }
 
     @PutMapping("/{idCurso}")
-    public ResponseEntity<Curso> actualizarCurso(@PathVariable Long idCurso, @Valid @RequestBody Curso detallesCurso) {
-        Curso curso = cursoService.updatefindByIdCurso(idCurso, detallesCurso);
+    public ResponseEntity<Curso> actualizarCurso(@PathVariable Long idCurso, @Valid @RequestBody Curso updateCurso) {
+        Curso curso = cursoService.updatefindByIdCurso(idCurso, updateCurso);
         if (curso == null) {
             return ResponseEntity.notFound().build();
         }

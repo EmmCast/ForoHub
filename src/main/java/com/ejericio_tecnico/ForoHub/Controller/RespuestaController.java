@@ -31,8 +31,8 @@ public class RespuestaController {
     }
 
     @PostMapping
-    public Respuesta crearRespuesta(@Valid @RequestBody Respuesta respuesta) {
-        return respuestaService.createRespuesta(respuesta);
+    public Respuesta crearRespuesta(@Valid @RequestBody Respuesta newRespuesta) {
+        return respuestaService.createRespuesta(newRespuesta);
     }
 
     @GetMapping("/{idRespuesta}")
@@ -45,8 +45,8 @@ public class RespuestaController {
     }
 
     @PutMapping("/{idRespuesta}")
-    public ResponseEntity<Respuesta> actualizarRespuesta(@PathVariable Long idRespuesta, @Valid @RequestBody Respuesta detallesRespuesta) {
-        Respuesta respuesta = respuestaService.updatefindByIdRespuesta(idRespuesta, detallesRespuesta);
+    public ResponseEntity<Respuesta> actualizarRespuesta(@PathVariable Long idRespuesta, @Valid @RequestBody Respuesta updateRespuesta) {
+        Respuesta respuesta = respuestaService.updatefindByIdRespuesta(idRespuesta, updateRespuesta);
         if (respuesta == null) {
             return ResponseEntity.notFound().build();
         }

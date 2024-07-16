@@ -45,7 +45,7 @@ public class Topico  implements Serializable{
     private String mensaje;
 
     @NotNull
-	@Column(name ="fechacreacion")
+	@Column(name ="fecha_creacion")
     private LocalDateTime fechaCreacion = LocalDateTime.now();
 
 	@NotBlank(message = "el Status no puede estar en blanco")

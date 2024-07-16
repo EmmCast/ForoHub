@@ -32,8 +32,8 @@ public class TopicoController {
     }
 
     @PostMapping
-    public Topico crearTopico(@Valid @RequestBody Topico topico) {
-        return topicoService.createTopico(topico);
+    public Topico crearTopico(@Valid @RequestBody Topico newTopico) {
+        return topicoService.createTopico(newTopico);
     }
 
     @GetMapping("/{idTopico}")
@@ -46,8 +46,8 @@ public class TopicoController {
     }
 
     @PutMapping("/{idTopico}")
-    public ResponseEntity<Topico> actualizarTopico(@PathVariable Long idTopico, @Valid @RequestBody Topico detallesTopico) {
-        Topico topico = topicoService.updatefindByIdTopico(idTopico, detallesTopico);
+    public ResponseEntity<Topico> actualizarTopico(@PathVariable Long idTopico, @Valid @RequestBody Topico updateTopico) {
+        Topico topico = topicoService.updatefindByIdTopico(idTopico, updateTopico);
         if (topico == null) {
             return ResponseEntity.notFound().build();
         }

@@ -31,8 +31,8 @@ public class PerfilController {
     }
 
     @PostMapping
-    public Perfil crearPerfil(@Valid @RequestBody Perfil perfil) {
-        return perfilService.createPerfil(perfil);
+    public Perfil crearPerfil(@Valid @RequestBody Perfil newPerfil) {
+        return perfilService.createPerfil(newPerfil);
     }
 
     @GetMapping("/{idPerfil}")
@@ -45,8 +45,8 @@ public class PerfilController {
     }
 
     @PutMapping("/{idPerfil}")
-    public ResponseEntity<Perfil> actualizarPerfil(@PathVariable Long idPerfil, @Valid @RequestBody Perfil detallesPerfil) {
-        Perfil perfil = perfilService.updatefindByIdPerfil(idPerfil, detallesPerfil);
+    public ResponseEntity<Perfil> actualizarPerfil(@PathVariable Long idPerfil, @Valid @RequestBody Perfil updatePerfil) {
+        Perfil perfil = perfilService.updatefindByIdPerfil(idPerfil, updatePerfil);
         if (perfil == null) {
             return ResponseEntity.notFound().build();
         }

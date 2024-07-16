@@ -35,7 +35,7 @@ public class Respuesta {
     private String mensaje;
 
     @NotNull
-    @Column(name ="fechacreacion")
+    @Column(name ="fecha_creacion")
     private LocalDateTime fechaCreacion = LocalDateTime.now();
 
     @NotNull
